@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arda&Candaş | Tourism Agency</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2ecc71;
+      --dark-bg: #121212;
+      --dark-text: #f5f5f5;
+      --light-bg: #f5f5f5;
+      --light-text: #333;
+      --transition: all 0.3s ease;
+      scroll-behavior: smooth;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      color: var(--light-text);
+      transition: var(--transition);
+    }
+
+    body.dark-mode {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .dark-mode .navbar {
+      background-color: rgba(18, 18, 18, 0.95);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 30px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--light-text);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .dark-mode .nav-links a {
+      color: var(--dark-text);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--light-text);
+    }
+
+    .dark-mode .hamburger {
+      color: var(--dark-text);
+    }
+
+    .utility-buttons {
+      display: flex;
+      align-items: center;
+    }
+
+    .theme-toggle, .lang-selector {
+      background: none;
+      border: none;
+      margin-left: 15px;
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--light-text);
+      transition: var(--transition);
+    }
+
+    .dark-mode .theme-toggle, .dark-mode .lang-selector {
+      color: var(--dark-text);
+    }
+
+    .theme-toggle:hover, .lang-selector:hover {
+      color: var(--primary-color);
+    }
+
+    .lang-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .lang-options {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: var(--light-bg);
+      min-width: 120px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .dark-mode .lang-options {
+      background-color: var(--dark-bg);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .lang-options a {
+      color: var(--light-text);
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .dark-mode .lang-options a {
+      color: var(--dark-text);
+    }
+
+    .lang-options a:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      color: var(--primary-color);
+    }
+
+    .lang-dropdown:hover .lang-options {
+      display: block;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/800') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .cta-btn:hover {
+      background-color: #2980b9;
+      transform: translateY(-3px);
+    }
+
+    .newsletter-form {
+      max-width: 500px;
+      margin: 30px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 200px;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    /* About Section */
+    .about {
+      background-color: var(--light-bg);
+      transition: var(--transition);
+    }
+
+    .dark-mode .about {
+      background-color: var(--dark-bg);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 2.5rem;
+      color: var(--primary-color);
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .about-img {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--light-text);
+    }
+
+    .dark-mode .about-text h3 {
+      color: var(--dark-text);
+    }
+
+    .about-text p {
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* Tours Section */
+    .tours {
+      background-color: #f9f9f9;
+      transition: var(--transition);
+    }
+
+    .dark-mode .tours {
+      background-color: #1a1a1a;
+    }
+
+    .tours-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .tour-card {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .dark-mode .tour-card {
+      background-color: #2c2c2c;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .tour-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .tour-img {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .tour-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .tour-card:hover .tour-img img {
+      transform: scale(1.1);
+    }
+
+    .tour-content {
+      padding: 20px;
+    }
+
+    .tour-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: var(--light-text);
+    }
+
+    .dark-mode .tour-content h3 {
+      color: var(--dark-text);
+    }
+
+    .tour-content p {
+      color: #777;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .dark-mode .tour-content p {
+      color: #aaa;
+    }
+
+    .tour-price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+
+    /* Contact Section */
+    .contact {
+      background-color: var(--light-bg);
+      transition: var(--transition);
+    }
+
+    .dark-mode .contact {
+      background-color: var(--dark-bg);
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .contact-info, .contact-social {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .dark-mode .contact-info, .dark-mode .contact-social {
+      background-color: #2c2c2c;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-info h3, .contact-social h3 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: var(--light-text);
+    }
+
+    .dark-mode .contact-info h3, .dark-mode .contact-social h3 {
+      color: var(--dark-text);
+    }
+
+    .contact-details {
+      list-style: none;
+    }
+
+    .contact-details li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .contact-details i {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin-right: 15px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background-color: #2980b9;
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #333;
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .footer p {
+      margin-bottom: 15px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin-bottom: 15px;
+    }
+
+    .footer-links li {
+      margin: 0 15px;
+    }
+
+    .footer-links a {
+      color: #ddd;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background-color: var(--light-bg);
+      max-width: 500px;
+      width: 90%;
+      padding: 30px;
+      border-radius: 10px;
+      position: relative;
+      text-align: center;
+      color: var(--light-text);
+    }
+
+    .dark-mode .modal-content {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #777;
+    }
+
+    .dark-mode .close-modal {
+      color: #aaa;
+    }
+
+    .close-modal:hover {
+      color: var(--primary-color);
+    }
+
+    .modal h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #d4edda;
+      color: #155724;
+      border-radius: 5px;
+    }
+
+    .dark-mode .success-message {
+      background-color: #1e663a;
+      color: #e8f5e9;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .about-content {
+        flex-direction: column;
+      }
+
+      .about-img, .about-text {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        background-color: white;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .dark-mode .nav-links {
+        background-color: #1a1a1a;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links li {
+        margin: 10px 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      section {
+        padding: 60px 0;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .newsletter-form input, .cta-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">Anatolian Adventures</a>
+      <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-link" data-lang="home">Home</a></li>
+        <li><a href="#about" class="nav-link" data-lang="about">About Us</a></li>
+        <li><a href="#tours" class="nav-link" data-lang="tours">Tours</a></li>
+        <li><a href="#contact" class="nav-link" data-lang="contact">Contact</a></li>
+      </ul>
+      <div class="utility-buttons">
+        <div class="lang-dropdown">
+          <button class="lang-selector" id="lang-selector">
+            <i class="fas fa-globe"></i> <span id="current-lang">EN</span>
+          </button>
+          <div class="lang-options">
+            <a href="#" data-lang="en">English</a>
+            <a href="#" data-lang="tr">Türkçe</a>
+            <a href="#" data-lang="es">Español</a>
+          </div>
+        </div>
+        <button class="theme-toggle" id="theme-toggle">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <h1 data-lang="hero-title">Discover the Magic of Turkey</h1>
+        <p data-lang="hero-subtitle">Experience unforgettable adventures through Turkey's most stunning locations with our tailored tour packages.</p>
+        <button class="cta-btn" id="newsletter-btn" data-lang="newsletter-cta">Subscribe to Our Newsletter</button>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" placeholder="Enter your email" id="email-input" required>
+          <button type="submit" class="cta-btn" data-lang="subscribe">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title" data-lang="about-title">About Us</h2>
+      <div class="about-content">
+        <div class="about-img">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbCBIipTazfe7U_ZHOYqVJ36C4s5sq9Q1MUw&s" alt="Tourism team">
+        </div>
+        <div class="about-text">
+          <h3 data-lang="about-subtitle">Your Gateway to Turkish Adventure</h3>
+          <p data-lang="about-text1">Founded in 2010, Anatolian Adventures has been providing exceptional tour experiences throughout Turkey. Our expert guides and carefully planned itineraries ensure you discover the authentic beauty and rich history of this magnificent country.</p>
+          <p data-lang="about-text2">We pride ourselves on sustainable tourism practices, supporting local communities while offering unforgettable experiences to travelers from around the world. Whether you're interested in ancient history, natural wonders, or cultural immersion, our team is dedicated to creating the perfect journey for you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tours Section -->
+  <section class="tours" id="tours">
+    <div class="container">
+      <h2 class="section-title" data-lang="tours-title">Our Tours</h2>
+      <div class="tours-grid">
+        <div class="tour-card">
+          <div class="tour-img">
+            <img src="https://www.goreme.com/image/cache/catalog/Urunler/tours/ephesus-tours/ephesus-group-tour-137-600x400h.jpg" alt="Ephesus">
+          </div>
+          <div class="tour-content">
+            <h3 data-lang="ephesus-title">Ephesus Ancient City</h3>
+            <p data-lang="ephesus-desc">Explore one of the world's best-preserved ancient cities, where history comes alive among spectacular ruins including the Library of Celsus and the Great Theatre.</p>
+            <div class="tour-price" data-lang="ephesus-price">From $89 per person</div>
+            <a href="#" class="cta-btn" data-lang="tour-details">View Details</a>
+          </div>
+        </div>
+
+        <div class="tour-card">
+          <div class="tour-img">
+            <img src="https://iamcappadocia.com/wp-content/uploads/2022/04/Cappadocia_4.jpg" alt="Cappadocia">
+          </div>
+          <div class="tour-content">
+            <h3 data-lang="cappadocia-title">Cappadocia Wonders</h3>
+            <p data-lang="cappadocia-desc">Discover the fairy chimneys, underground cities, and breathtaking landscapes of Cappadocia. Experience a hot air balloon ride over this surreal terrain.</p>
+            <div class="tour-price" data-lang="cappadocia-price">From $149 per person</div>
+            <a href="#" class="cta-btn" data-lang="tour-details">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title" data-lang="contact-title">Contact Us</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3 data-lang="contact-info-title">Get in Touch</h3>
+          <ul class="contact-details">
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span data-lang="address">123 Tourism Street, Istanbul, Turkey</span>
+            </li>
+            <li>
+              <i class="fas fa-phone"></i>
+              <span>+90 212 123 4567</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>info@anatolianadventures.com</span>
+            </li>
+            <li>
+              <i class="fas fa-clock"></i>
+              <span data-lang="hours">Monday - Friday: 9am - 6pm</span>
+            </li>
+          </ul>
+        </div>
+        <div class="contact-social">
+          <h3 data-lang="social-title">Follow Us</h3>
+          <p data-lang="social-text">Stay connected and follow our adventures on social media to get the latest updates, travel tips, and exclusive offers.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tripadvisor"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p data-lang="footer-text">Anatolian Adventures - Creating Memorable Experiences Since 2010</p>
+        <ul class="footer-links">
+          <li><a href="#" data-lang="privacy">Privacy Policy</a></li>
+          <li><a href="#" data-lang="terms">Terms of Service</a></li>
+          <li><a href="#" data-lang="faq">FAQ</a></li>
+        </ul>
+        <p class="copyright" data-lang="copyright">© 2025 Anatolian Adventures. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Newsletter Modal -->
+  <div class="modal" id="newsletter-modal">
+    <div class="modal-content">
+      <span class="close-modal" id="close-modal">&times;</span>
+      <h3 data-lang="modal-title">Join Our Newsletter</h3>
+      <p data-lang="modal-text">Subscribe to receive exclusive offers, travel tips, and updates about our latest tours!</p>
+      <form id="modal-form">
+        <input type="email" placeholder="Enter your email" class="newsletter-input" required style="width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #ddd; border-radius: 5px;">
+        <button type="submit" class="cta-btn" style="width: 100%;" data-lang="subscribe">Subscribe</button>
+      </form>
+      <div class="success-message" id="success-message" data-lang="success-message">
+        Thank you for subscribing! You'll receive our newsletter soon.
+      </div>
+    </div>
+  </div>
+
+<script>
+    const translations = {
+      en: {
+        "home": "Home",
+        "about": "About Us",
+        "tours": "Tours",
+        "contact": "Contact",
+        "hero-title": "Discover the Magic of Turkey",
+        "hero-subtitle": "Experience unforgettable adventures through Turkey's most stunning locations with our tailored tour packages.",
+        "newsletter-cta": "Subscribe to Our Newsletter",
+        "subscribe": "Subscribe",
+        "about-title": "About Us",
+        "about-subtitle": "Your Gateway to Turkish Adventure",
+        "about-text1": "Founded in 2010, Anatolian Adventures has been providing exceptional tour experiences throughout Turkey. Our expert guides and carefully planned itineraries ensure you discover the authentic beauty and rich history of this magnificent country.",
+        "about-text2": "We pride ourselves on sustainable tourism practices, supporting local communities while offering unforgettable experiences to travelers from around the world. Whether you're interested in ancient history, natural wonders, or cultural immersion, our team is dedicated to creating the perfect journey for you.",
+        "tours-title": "Our Tours",
+        "ephesus-title": "Ephesus Ancient City",
+        "ephesus-desc": "Explore one of the world's best-preserved ancient cities, where history comes alive among spectacular ruins including the Library of Celsus and the Great Theatre.",
+        "ephesus-price": "From $89 per person",
+        "cappadocia-title": "Cappadocia Wonders",
+        "cappadocia-desc": "Discover the fairy chimneys, underground cities, and breathtaking landscapes of Cappadocia. Experience a hot air balloon ride over this surreal terrain.",
+        "cappadocia-price": "From $149 per person",
+        "tour-details": "View Details",
+        "contact-title": "Contact Us",
+        "contact-info-title": "Get in Touch",
+        "address": "123 Tourism Street, Istanbul, Turkey",
+        "hours": "Monday - Friday: 9am - 6pm",
+        "social-title": "Follow Us",
+        "social-text": "Stay connected and follow our adventures on social media to get the latest updates, travel tips, and exclusive offers.",
+        "footer-text": "Anatolian Adventures - Creating Memorable Experiences Since 2010",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "faq": "FAQ",
+        "copyright": "© 2025 Anatolian Adventures. All rights reserved.",
+        "modal-title": "Join Our Newsletter",
+        "modal-text": "Subscribe to receive exclusive offers, travel tips, and updates about our latest tours!",
+        "success-message": "Thank you for subscribing! You'll receive our newsletter soon."
+      },
+      tr: {
+        "home": "Ana Sayfa",
+        "about": "Hakkımızda",
+        "tours": "Turlar",
+        "contact": "İletişim",
+        "hero-title": "Türkiye'nin Büyüsünü Keşfedin",
+        "hero-subtitle": "Özel tur paketlerimizle Türkiye'nin en etkileyici yerlerinde unutulmaz maceralar yaşayın.",
+        "newsletter-cta": "Bültenimize Abone Olun",
+        "subscribe": "Abone Ol",
+        "about-title": "Hakkımızda",
+        "about-subtitle": "Türk Maceranıza Açılan Kapı",
+        "about-text1": "2010 yılında kurulan Anatolian Adventures, Türkiye genelinde olağanüstü tur deneyimleri sunmaktadır. Uzman rehberlerimiz ve özenle planlanmış rotalarımız, bu muhteşem ülkenin otantik güzelliğini ve zengin tarihini keşfetmenizi sağlar.",
+        "about-text2": "Sürdürülebilir turizm uygulamalarıyla gurur duyuyoruz, dünyanın dört bir yanından gelen gezginlere unutulmaz deneyimler sunarken yerel toplulukları destekliyoruz. İster antik tarih, ister doğal harikalar, ister kültürel deneyimlerle ilgileniyor olun, ekibimiz sizin için mükemmel bir seyahat yaratmaya adanmıştır.",
+        "tours-title": "Turlarımız",
+        "ephesus-title": "Efes Antik Kenti",
+        "ephesus-desc": "Dünyanın en iyi korunmuş antik kentlerinden birini keşfedin, Celsus Kütüphanesi ve Büyük Tiyatro gibi muhteşem kalıntılar arasında tarih canlanıyor.",
+        "ephesus-price": "Kişi başı 89$ 'dan başlayan fiyatlarla",
+        "cappadocia-title": "Kapadokya Harikaları",
+        "cappadocia-desc": "Kapadokya'nın peri bacalarını, yeraltı şehirlerini ve nefes kesen manzaralarını keşfedin. Bu gerçeküstü arazide sıcak hava balonu gezisi deneyimleyin.",
+        "cappadocia-price": "Kişi başı 149$ 'dan başlayan fiyatlarla",
+        "tour-details": "Detayları Gör",
+        "contact-title": "Bize Ulaşın",
+        "contact-info-title": "İletişime Geçin",
+        "address": "123 Turizm Sokak, İstanbul, Türkiye",
+        "hours": "Pazartesi - Cuma: 9:00 - 18:00",
+        "social-title": "Bizi Takip Edin",
+        "social-text": "Sosyal medyada bizi takip ederek en son güncellemeler, seyahat ipuçları ve özel teklifler hakkında bilgi alın.",
+        "footer-text": "Anatolian Adventures - 2010'dan Beri Unutulmaz Deneyimler Yaratıyoruz",
+        "privacy": "Gizlilik Politikası",
+        "terms": "Kullanım Şartları",
+        "faq": "SSS",
+        "copyright": "© 2025 Anatolian Adventures. Tüm hakları saklıdır.",
+        "modal-title": "Bültenimize Katılın",
+        "modal-text": "Özel teklifleri, seyahat ipuçlarını ve en son turlarımız hakkında güncellemeleri almak için abone olun!",
+        "success-message": "Abone olduğunuz için teşekkürler! Yakında bültenimizi alacaksınız."
+      },
+      es: {
+        "home": "Inicio",
+        "about": "Nosotros",
+        "tours": "Tours",
+        "contact": "Contacto",
+        "hero-title": "Descubre la Magia de Turquía",
+        "hero-subtitle": "Experimenta aventuras inolvidables a través de los lugares más impresionantes de Turquía con nuestros paquetes de tour personalizados.",
+        "newsletter-cta": "Suscríbete a Nuestro Boletín",
+        "subscribe": "Suscribirse",
+        "about-title": "Sobre Nosotros",
+        "about-subtitle": "Tu Puerta de Entrada a la Aventura Turca",
+        "about-text1": "Fundada en 2010, Anatolian Adventures ha estado brindando experiencias excepcionales de tours por toda Turquía. Nuestros guías expertos e itinerarios cuidadosamente planificados te aseguran descubrir la auténtica belleza y rica historia de este magnífico país.",
+        "about-text2": "Nos enorgullecemos de nuestras prácticas de turismo sostenible, apoyando a las comunidades locales mientras ofrecemos experiencias inolvidables a viajeros de todo el mundo. Ya sea que estés interesado en historia antigua, maravillas naturales o inmersión cultural, nuestro equipo está dedicado a crear el viaje perfecto para ti.",
+        "tours-title": "Nuestros Tours",
+        "ephesus-title": "Ciudad Antigua de Éfeso",
+        "ephesus-desc": "Explora una de las ciudades antiguas mejor conservadas del mundo, donde la historia cobra vida entre ruinas espectaculares como la Biblioteca de Celso y el Gran Teatro.",
+        "ephesus-price": "Desde $89 por persona",
+        "cappadocia-title": "Maravillas de Capadocia",
+        "cappadocia-desc": "Descubre las chimeneas de hadas, ciudades subterráneas y paisajes impresionantes de Capadocia. Experimenta un paseo en globo aerostático sobre este terreno surrealista.",
+        "cappadocia-price": "Desde $149 por persona",
+        "tour-details": "Ver Detalles",
+        "contact-title": "Contáctanos",
+        "contact-info-title": "Ponte en Contacto",
+        "address": "123 Calle Turismo, Estambul, Turquía",
+        "hours": "Lunes - Viernes: 9am - 6pm",
+        "social-title": "Síguenos",
+        "social-text": "Mantente conectado y sigue nuestras aventuras en las redes sociales para recibir las últimas actualizaciones, consejos de viaje y ofertas exclusivas.",
+        "footer-text": "Anatolian Adventures - Creando Experiencias Memorables Desde 2010",
+        "privacy": "Política de Privacidad",
+        "terms": "Términos de Servicio",
+        "faq": "Preguntas Frecuentes",
+        "copyright": "© 2025 Anatolian Adventures. Todos los derechos reservados.",
+        "modal-title": "Únete a Nuestro Boletín",
+        "modal-text": "¡Suscríbete para recibir ofertas exclusivas, consejos de viaje y actualizaciones sobre nuestros últimos tours!",
+        "success-message": "¡Gracias por suscribirte! Pronto recibirás nuestro boletín."
+      }
+    };
+
+    // DOM Elements
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    const newsletterBtn = document.getElementById('newsletter-btn');
+    const newsletterModal = document.getElementById('newsletter-modal');
+    const closeModal = document.getElementById('close-modal');
+    const newsletterForm = document.getElementById('newsletter-form');
+    const modalForm = document.getElementById('modal-form');
+    const successMessage = document.getElementById('success-message');
+    const currentLang = document.getElementById('current-lang');
+    const langOptions = document.querySelectorAll('.lang-options a');
+
+    // Toggle Dark/Light Mode
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+
+      // Update icon
+      const icon = themeToggle.querySelector('i');
+      if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
+
+      // Save preference to localStorage
+      const isDarkMode = body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isDarkMode);
+    });
+
+    // Check for saved theme preference
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+      if (savedDarkMode) {
+        body.classList.add('dark-mode');
+        const icon = themeToggle.querySelector('i');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      }
+
+      // Check for saved language preference
+      const savedLang = localStorage.getItem('language') || 'en';
+      changeLanguage(savedLang);
+    });
+
+    // Mobile Menu Toggle
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    // Hide mobile menu when a link is clicked
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 70, // Offset for fixed navbar
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Newsletter Modal
+    newsletterBtn.addEventListener('click', () => {
+      newsletterModal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', () => {
+      newsletterModal.style.display = 'none';
+      successMessage.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === newsletterModal) {
+        newsletterModal.style.display = 'none';
+        successMessage.style.display = 'none';
+      }
+    });
+
+    // Form Submission
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.getElementById('email-input').value = '';
+      showSuccessMessage();
+    });
+
+    modalForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      modalForm.style.display = 'none';
+      showSuccessMessage();
+    });
+
+    function showSuccessMessage() {
+      successMessage.style.display = 'block';
+      setTimeout(() => {
+        if (successMessage.style.display === 'block') {
+          newsletterModal.style.display = 'none';
+          successMessage.style.display = 'none';
+          modalForm.style.display = 'block';
+        }
+      }, 3000);
+    }
+
+    // Language Switching
+    langOptions.forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.preventDefault();
+        const lang = e.target.getAttribute('data-lang');
+        changeLanguage(lang);
+      });
+    });
+
+    function changeLanguage(lang) {
+      // Update current language display
+      currentLang.textContent = lang.toUpperCase();
+
+      // Save preference to localStorage
+      localStorage.setItem('language', lang);
+
+      // Update all text elements with translations
+      document.querySelectorAll('[data-lang]').forEach(element => {
+        const key = element.getAttribute('data-lang');
+        if (translations[lang] && translations[lang][key]) {
+          if (element.tagName === 'INPUT') {
+            element.placeholder = translations[lang][key];
+          } else {
+            element.textContent = translations[lang][key];
+          }
+        }
+      });
+    }
+
+    // Fixed navbar on scroll
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.padding = '5px 0';
+      } else {
+        navbar.style.padding = '15px 0';
+      }
+    });
+  </script>
+
+</body>
+</html>
